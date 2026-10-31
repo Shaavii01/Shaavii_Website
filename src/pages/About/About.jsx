@@ -3,7 +3,7 @@ import {
   Sparkles, Zap, Cpu, Sliders, Eye, TrendingUp,
   ArrowRight
 } from 'lucide-react';
-import companyLogo from '../../Assets/Logo.png';
+import companyLogo from '../../Assets/Shaavii-Logo-Reversed-Transparent.png';
 
 const pillars = [
   {
@@ -51,7 +51,7 @@ export default function About() {
     <div className="w-full text-slate-800">
       
       {/* 1. HEADER BANNER */}
-      <section className="bg-gradient-to-b from-indigo-50/70 via-white to-white py-16 sm:py-20 border-b border-gray-100 text-center">
+      <section className="bg-gradient-to-b from-indigo-50/70 via-white to-white pt-16 sm:pt-20 pb-12 sm:pb-14 border-b border-gray-100 text-center">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-100 text-indigo-800 text-xs font-bold uppercase tracking-wider mb-4 shadow-sm">
             About Shaavii
@@ -66,44 +66,82 @@ export default function About() {
       </section>
 
       {/* 2. STORY & MISSION */}
-      <section className="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-5 text-left">
-            <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider">
-              Our Vision
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-black text-slate-950 tracking-tight">
-              Growing a Business Shouldn’t Mean Growing Complexity.
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-              We started Shaavii because we observed a common struggle in growing businesses: teams buried in repetitive manual tasks, departments operating in silos, missed follow-ups, and limited operational visibility.
-            </p>
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-              We believe your team deserves to focus on meaningful work, customer relationships, and strategic growth — not repetitive busywork. Shaavii brings automation, intelligent workflows, and centralized management together onto one intuitive platform.
-            </p>
+      <section className="pt-12 sm:pt-16 pb-16 sm:pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+          
+          {/* Left Column: Vision & Story */}
+          <div className="flex flex-col justify-between space-y-6 text-left">
+            <div>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200/80 text-indigo-700 text-xs font-bold uppercase tracking-wider mb-3">
+                Our Vision
+              </span>
+              <h2 className="text-2xl sm:text-4xl font-black text-slate-950 tracking-tight mb-4 leading-tight">
+                Growing a Business Shouldn’t Mean Growing Complexity.
+              </h2>
+              <div className="space-y-4 text-sm sm:text-base text-slate-600 leading-relaxed">
+                <p>
+                  We started Shaavii because we observed a common struggle in growing businesses: teams buried in repetitive manual tasks, departments operating in silos, missed follow-ups, and limited operational visibility.
+                </p>
+                <p>
+                  We believe your team deserves to focus on meaningful work, customer relationships, and strategic growth — not repetitive busywork. Shaavii brings automation, intelligent workflows, and centralized management together onto one intuitive platform.
+                </p>
+              </div>
+            </div>
+
             <div className="pt-2">
-              <div className="p-4 rounded-xl bg-indigo-50 border border-indigo-100 text-indigo-950 font-semibold text-sm">
-                “Less Manual Work. More Intelligent Growth.”
+              <div className="p-4 rounded-2xl bg-indigo-50/80 border border-indigo-100 text-indigo-950 font-semibold text-sm flex items-center gap-3 shadow-sm">
+                <div className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse flex-shrink-0" />
+                <span>“Less Manual Work. More Intelligent Growth.”</span>
               </div>
             </div>
           </div>
 
-          <div className="flex items-center justify-center">
-            <div className="w-full max-w-md p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-indigo-500 via-indigo-600 to-purple-700 text-white shadow-xl text-center space-y-6">
-              <div className="w-20 h-20 rounded-2xl bg-white p-3 mx-auto flex items-center justify-center shadow-md">
-                <img src={companyLogo} alt="Shaavii – Powering Your Digital Future" className="w-full h-full object-contain" />
+          {/* Right Column: Balanced Brand Mission Card */}
+          <div className="h-full flex flex-col justify-between p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-indigo-950 via-slate-950 to-indigo-900 text-white shadow-2xl border border-indigo-500/30 text-center relative overflow-hidden group">
+            {/* Ambient Background Glows */}
+            <div className="absolute -top-16 -right-16 w-60 h-60 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-16 -left-16 w-60 h-60 bg-purple-500/20 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="relative z-10 space-y-6">
+              {/* Logo */}
+              <div className="flex items-center justify-center pt-2">
+                <img
+                  src={companyLogo}
+                  alt="Shaavii – Powering Your Digital Future"
+                  className="h-14 sm:h-16 w-auto object-contain mx-auto transition-transform duration-300 group-hover:scale-105"
+                />
               </div>
-              <div>
-                <h3 className="text-2xl font-black">SHAAVII</h3>
-                <p className="text-xs font-semibold text-indigo-200 tracking-wide mt-1">
-                  Powering Your Digital Future
-                </p>
-              </div>
-              <p className="text-xs sm:text-sm text-indigo-100 leading-relaxed">
+
+              {/* Statement */}
+              <p className="text-sm sm:text-base text-indigo-100/90 leading-relaxed max-w-sm mx-auto">
                 Transforming how businesses operate by unifying people, processes, and intelligent technology.
               </p>
+
+              {/* Key Value Highlights */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-2 text-left">
+                <div className="p-3 rounded-xl bg-white/[0.06] border border-white/10 text-center">
+                  <div className="text-xs font-bold text-white">Unified</div>
+                  <div className="text-[10px] text-indigo-200 mt-0.5">Platform</div>
+                </div>
+                <div className="p-3 rounded-xl bg-white/[0.06] border border-white/10 text-center">
+                  <div className="text-xs font-bold text-white">Intelligent</div>
+                  <div className="text-[10px] text-indigo-200 mt-0.5">Automations</div>
+                </div>
+                <div className="p-3 rounded-xl bg-white/[0.06] border border-white/10 text-center">
+                  <div className="text-xs font-bold text-white">Real-Time</div>
+                  <div className="text-[10px] text-indigo-200 mt-0.5">Clarity</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Slogan Badge */}
+            <div className="relative z-10 pt-6 mt-6 border-t border-white/10 flex items-center justify-center">
+              <span className="text-xs font-semibold text-indigo-300 tracking-wider uppercase">
+                Powering Your Digital Future
+              </span>
             </div>
           </div>
+
         </div>
       </section>
 
@@ -172,7 +210,7 @@ export default function About() {
               onClick={scrollToContact}
               className="inline-flex items-center gap-2 h-12 px-9 bg-white hover:bg-slate-50 text-indigo-900 text-sm sm:text-base font-bold rounded-xl transition-all shadow-xl hover:-translate-y-0.5 cursor-pointer"
             >
-              Book Your Free Demo <ArrowRight size={18} />
+              Get in Touch <ArrowRight size={18} />
             </a>
           </div>
         </div>

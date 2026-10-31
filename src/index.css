@@ -121,6 +121,49 @@ table th, table td {
   animation: pulse-subtle 2.5s ease-in-out infinite;
 }
 
+/* Circular Orbit Animations for Tech Stack */
+@keyframes circular-orbit-clockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes circular-orbit-counter {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+
+.animate-orbit-cw {
+  animation: circular-orbit-clockwise 50s linear infinite;
+}
+
+.animate-orbit-counter {
+  animation: circular-orbit-counter 50s linear infinite;
+  transform: translate(-50%, -50%);
+}
+
+.orbit-container:hover .animate-orbit-cw,
+.orbit-container:hover .animate-orbit-counter {
+  animation-play-state: paused;
+}
+
+/* 2-second popup progress animation */
+@keyframes shrink-progress {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+
+.animate-shrink-2s {
+  animation: shrink-progress 2s linear forwards;
+}
+
 /* Fix for iOS date inputs */
 input[type="date"], input[type="datetime-local"], input[type="time"], input[type="month"] {
   -webkit-appearance: none;

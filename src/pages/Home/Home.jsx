@@ -122,7 +122,7 @@ export default function Home() {
       </section>
 
       {/* 2. THE PROBLEM */}
-      <section className="relative py-20 sm:py-28 bg-gradient-to-b from-slate-50/80 via-white to-slate-50/80 border-b border-gray-100 overflow-hidden">
+      <section className="relative pt-16 sm:pt-24 pb-10 sm:pb-12 bg-gradient-to-b from-slate-50/80 via-white to-slate-50/80 border-b border-gray-100 overflow-hidden">
         {/* Subtle Ambient Radial Glow */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-rose-500/5 rounded-full blur-3xl pointer-events-none" />
 

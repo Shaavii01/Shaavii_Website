@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import shaaviiLogo from '../Assets/Shaavii-Logo.png';
+import shaaviiLogo from '../Assets/Shaavii-Logo 1 .png';
 
 const navItems = [
   { id: 'home', label: 'Home' },
@@ -99,7 +99,7 @@ const Header = () => {
             onClick={(e) => handleNavClick(e, 'contact')}
             className="px-5 py-2.5 bg-indigo-600 text-white text-sm font-bold rounded-xl hover:bg-indigo-700 transition-all shadow-sm hover:shadow-md cursor-pointer"
           >
-            Book a Free Demo
+            Get in Touch
           </button>
         </div>
 
@@ -139,7 +139,7 @@ const Header = () => {
               onClick={(e) => handleNavClick(e, 'contact')}
               className="mt-2 px-4 py-3.5 bg-indigo-600 text-white text-sm font-bold rounded-xl text-center hover:bg-indigo-700 transition-all cursor-pointer"
             >
-              Book a Free Demo
+              Get in Touch
             </button>
           </nav>
         </div>

@@ -56,53 +56,31 @@ const aiCapabilities = [
 const steps = [
   {
     number: '01',
-    phase: 'Phase 01',
     title: 'Connect',
     description: 'Bring your business processes, teams, and information together on one unified platform.',
     icon: GitFork,
-    color: 'from-blue-600 to-indigo-600',
-    lightBg: 'bg-indigo-50',
-    textColor: 'text-indigo-600',
-    borderColor: 'border-indigo-200',
-    shadowColor: 'shadow-indigo-500/20',
   },
   {
     number: '02',
-    phase: 'Phase 02',
     title: 'Configure',
     description: 'Set up custom workflows and business rules tailored to your unique operational requirements.',
     icon: Sliders,
-    color: 'from-indigo-600 to-violet-600',
-    lightBg: 'bg-violet-50',
-    textColor: 'text-violet-600',
-    borderColor: 'border-violet-200',
-    shadowColor: 'shadow-violet-500/20',
   },
   {
     number: '03',
-    phase: 'Phase 03',
     title: 'Automate',
     description: 'Let intelligent automation handle repetitive tasks, routine handoffs, and approvals.',
     icon: Zap,
-    color: 'from-violet-600 to-purple-600',
-    lightBg: 'bg-purple-50',
-    textColor: 'text-purple-600',
-    borderColor: 'border-purple-200',
-    shadowColor: 'shadow-purple-500/20',
   },
   {
     number: '04',
-    phase: 'Phase 04',
     title: 'Optimize',
     description: 'Monitor real-time performance, uncover efficiency opportunities, and continuously improve.',
     icon: TrendingUp,
-    color: 'from-purple-600 to-emerald-600',
-    lightBg: 'bg-emerald-50',
-    textColor: 'text-emerald-600',
-    borderColor: 'border-emerald-200',
-    shadowColor: 'shadow-emerald-500/20',
   },
 ];
+
+const circleRadius = 260;
 
 const techStack = [
   {
@@ -111,11 +89,11 @@ const techStack = [
     toolList: ['React', 'Next.js', 'Tailwind', 'TypeScript'],
     icon: Palette,
     gradient: 'from-blue-500 to-cyan-500',
-    color: 'text-blue-600',
+    color: '#06b6d4',
     borderColor: 'hover:border-blue-300',
-    glowColor: 'shadow-blue-500/15',
-    desktopPos: 'top-2 left-1/2 -translate-x-1/2',
-    line: { x: 440, y: 110, color: '#06b6d4' },
+    angle: -90, // Top
+    x: 0,
+    y: -260,
   },
   {
     name: 'Backend',
@@ -123,11 +101,11 @@ const techStack = [
     toolList: ['Node.js', 'Express', 'Python', 'Java'],
     icon: Server,
     gradient: 'from-indigo-600 to-purple-600',
-    color: 'text-indigo-600',
+    color: '#818cf8',
     borderColor: 'hover:border-indigo-300',
-    glowColor: 'shadow-indigo-500/15',
-    desktopPos: 'top-28 right-4',
-    line: { x: 700, y: 220, color: '#818cf8' },
+    angle: -18, // Top-Right
+    x: 247,
+    y: -80,
   },
   {
     name: 'Mobile',
@@ -135,11 +113,11 @@ const techStack = [
     toolList: ['React Native', 'Flutter', 'Kotlin', 'Swift'],
     icon: Smartphone,
     gradient: 'from-emerald-500 to-teal-600',
-    color: 'text-emerald-600',
+    color: '#10b981',
     borderColor: 'hover:border-emerald-300',
-    glowColor: 'shadow-emerald-500/15',
-    desktopPos: 'bottom-6 right-20',
-    line: { x: 620, y: 490, color: '#10b981' },
+    angle: 54, // Bottom-Right
+    x: 153,
+    y: 210,
   },
   {
     name: 'Database',
@@ -147,11 +125,11 @@ const techStack = [
     toolList: ['PostgreSQL', 'MongoDB', 'Redis', 'Firebase'],
     icon: Database,
     gradient: 'from-amber-500 to-orange-500',
-    color: 'text-amber-600',
+    color: '#f59e0b',
     borderColor: 'hover:border-amber-300',
-    glowColor: 'shadow-amber-500/15',
-    desktopPos: 'bottom-6 left-20',
-    line: { x: 260, y: 490, color: '#f59e0b' },
+    angle: 126, // Bottom-Left
+    x: -153,
+    y: 210,
   },
   {
     name: 'Cloud & DevOps',
@@ -159,20 +137,42 @@ const techStack = [
     toolList: ['AWS', 'GCP', 'Docker', 'CI/CD'],
     icon: Cloud,
     gradient: 'from-sky-500 to-indigo-500',
-    color: 'text-sky-600',
+    color: '#38bdf8',
     borderColor: 'hover:border-sky-300',
-    glowColor: 'shadow-sky-500/15',
-    desktopPos: 'top-28 left-4',
-    line: { x: 180, y: 220, color: '#38bdf8' },
+    angle: 198, // Top-Left
+    x: -247,
+    y: -80,
   },
 ];
+
+// Precomputed 5 curved circular flow arcs connecting one div to the next
+const arcConnections = [
+  { fromIdx: 0, toIdx: 1, startAngle: -68, endAngle: -40, color: '#6366f1' },
+  { fromIdx: 1, toIdx: 2, startAngle: 4, endAngle: 32, color: '#8b5cf6' },
+  { fromIdx: 2, toIdx: 3, startAngle: 76, endAngle: 104, color: '#10b981' },
+  { fromIdx: 3, toIdx: 4, startAngle: 148, endAngle: 176, color: '#f59e0b' },
+  { fromIdx: 4, toIdx: 0, startAngle: 220, endAngle: 248, color: '#0ea5e9' },
+].map((arc) => {
+  const rad1 = (arc.startAngle * Math.PI) / 180;
+  const rad2 = (arc.endAngle * Math.PI) / 180;
+  const x1 = Math.round(circleRadius * Math.cos(rad1));
+  const y1 = Math.round(circleRadius * Math.sin(rad1));
+  const x2 = Math.round(circleRadius * Math.cos(rad2));
+  const y2 = Math.round(circleRadius * Math.sin(rad2));
+  return {
+    ...arc,
+    path: `M ${x1} ${y1} A ${circleRadius} ${circleRadius} 0 0 1 ${x2} ${y2}`,
+    arrowX: x2,
+    arrowY: y2,
+  };
+});
 
 export default function Services() {
   return (
     <div className="w-full text-slate-800">
 
       {/* 1. BUSINESS AUTOMATION SOLUTIONS */}
-      <section className="relative overflow-hidden py-20 sm:py-28 bg-gradient-to-b from-slate-50/80 via-white to-slate-50/80 border-b border-gray-100">
+      <section className="relative overflow-hidden pt-10 sm:pt-14 pb-20 sm:pb-28 bg-gradient-to-b from-slate-50/80 via-white to-slate-50/80 border-b border-gray-100">
         {/* Subtle Ambient Radial Glow */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -288,86 +288,40 @@ export default function Services() {
       </section>
 
       {/* 5. 4-STEP IMPLEMENTATION METHODOLOGY */}
-      <section className="relative overflow-hidden py-20 sm:py-28 bg-white border-b border-gray-100">
+      <section className="py-20 sm:py-24 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Section Header */}
-          <div className="max-w-3xl mx-auto text-center mb-16 sm:mb-20">
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200/80 text-xs font-bold uppercase tracking-wider mb-4 shadow-sm">
+          <div className="max-w-2xl mx-auto text-center mb-14">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200/80 text-indigo-700 text-xs font-bold uppercase tracking-wider mb-3 shadow-sm">
               <Sparkles size={14} className="text-indigo-600" />
               <span>Implementation Methodology</span>
             </span>
-            <h2 className="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight leading-tight mb-4">
-              From Complexity to Simplicity in{' '}
-              <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent">
-                Four Connected Steps.
-              </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 tracking-tight leading-tight">
+              From Complexity to Simplicity in Four Steps.
             </h2>
-            <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-              A continuous, frictionless operational pipeline engineered to transition your business from manual chaos to autonomous clarity.
-            </p>
           </div>
 
-          {/* Connected Flow Pipeline Container */}
-          <div className="relative max-w-6xl mx-auto">
-            
-            {/* Horizontal Connecting Flow Line behind the step nodes (Desktop) */}
-            <div className="hidden lg:block absolute top-[52px] left-[10%] right-[10%] h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-emerald-500 rounded-full z-0 opacity-30" />
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
-              {steps.map((st, idx) => {
-                const Icon = st.icon;
-                return (
-                  <div
-                    key={st.number}
-                    className="group relative p-7 rounded-3xl border border-slate-200/90 bg-white hover:border-indigo-300 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 text-left flex flex-col justify-between"
-                  >
-                    {/* Directional Flow Arrow to next step (Desktop) */}
-                    {idx < steps.length - 1 && (
-                      <div className="hidden lg:flex absolute -right-3.5 top-10 z-20 w-7 h-7 rounded-full bg-white border-2 border-indigo-500 text-indigo-600 items-center justify-center shadow-md group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
-                        <ArrowRight size={13} className="stroke-[2.5]" />
-                      </div>
-                    )}
-
-                    <div>
-                      {/* Step Number Node + Icon Header */}
-                      <div className="flex items-center justify-between mb-6">
-                        <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${st.color} text-white font-black text-base flex items-center justify-center shadow-lg ${st.shadowColor} group-hover:scale-105 transition-transform duration-300`}>
-                          {st.number}
-                        </div>
-                        <div className={`w-10 h-10 rounded-xl ${st.lightBg} ${st.textColor} flex items-center justify-center`}>
-                          <Icon size={20} />
-                        </div>
-                      </div>
-
-                      {/* Phase Tag & Step Title */}
-                      <div className="mb-2">
-                        <span className={`text-[11px] font-bold ${st.textColor} uppercase tracking-wider block mb-1`}>
-                          {st.phase}
-                        </span>
-                        <h3 className="text-xl font-bold text-slate-950 group-hover:text-indigo-600 transition-colors">
-                          {st.title}
-                        </h3>
-                      </div>
-
-                      {/* Description */}
-                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        {st.description}
-                      </p>
-                    </div>
-
-                    {/* Step Flow Footer Indicator */}
-                    <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
-                      <span className="font-semibold text-slate-500">Step {idx + 1} of 4</span>
-                      <span className="inline-flex items-center gap-1 font-bold text-indigo-600 group-hover:translate-x-1 transition-transform">
-                        Flow <ArrowRight size={12} />
-                      </span>
-                    </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {steps.map((st) => {
+              const Icon = st.icon;
+              return (
+                <div
+                  key={st.number}
+                  className="p-6 sm:p-7 rounded-2xl border border-slate-200/80 bg-white hover:border-indigo-300 hover:shadow-lg transition-all text-left"
+                >
+                  <span className="text-3xl font-black text-indigo-400 block mb-4">
+                    {st.number}
+                  </span>
+                  <div className="flex items-center gap-2 mb-2.5">
+                    <Icon size={19} className="text-indigo-600" />
+                    <h3 className="text-lg font-bold text-slate-900">{st.title}</h3>
                   </div>
-                );
-              })}
-            </div>
-
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    {st.description}
+                  </p>
+                </div>
+              );
+            })}
           </div>
 
         </div>
@@ -394,105 +348,153 @@ export default function Services() {
             </p>
           </div>
 
-          {/* Desktop Circular Connection Constellation (Visible on lg screens) */}
-          <div className="hidden lg:block relative max-w-4xl mx-auto h-[620px] select-none">
+          {/* Desktop Circular Moving Orbit Constellation (Visible on lg screens) */}
+          <div className="hidden lg:block relative max-w-5xl mx-auto h-[740px] select-none orbit-container my-2">
             
-            {/* SVG Connecting Spokes & Circular Orbit Rings */}
-            <svg
-              className="absolute inset-0 w-full h-full pointer-events-none z-0"
-              viewBox="0 0 880 620"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <linearGradient id="orbitGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#6366f1" stopOpacity="0.4" />
-                  <stop offset="50%" stopColor="#a855f7" stopOpacity="0.3" />
-                  <stop offset="100%" stopColor="#10b981" stopOpacity="0.4" />
-                </linearGradient>
-              </defs>
-
-              {/* Concentric Circular Orbits */}
-              <circle cx="440" cy="310" r="240" stroke="url(#orbitGlow)" strokeWidth="1.5" strokeDasharray="6 6" />
-              <circle cx="440" cy="310" r="140" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="4 4" opacity="0.7" />
-
-              {/* Connecting Spokes between Center Hub (440, 310) and the 5 Nodes */}
-              {techStack.map((t, idx) => (
-                <g key={idx}>
-                  <line
-                    x1="440"
-                    y1="310"
-                    x2={t.line.x}
-                    y2={t.line.y}
-                    stroke={t.line.color}
-                    strokeWidth="2"
-                    strokeDasharray="4 4"
-                    opacity="0.6"
-                  />
-                  {/* Traveling Pulse Signal Dot */}
-                  <circle r="4" fill={t.line.color}>
-                    <animateMotion
-                      path={`M 440 310 L ${t.line.x} ${t.line.y}`}
-                      dur={`${2.4 + idx * 0.3}s`}
-                      repeatCount="indefinite"
-                    />
-                  </circle>
-                </g>
-              ))}
-            </svg>
-
-            {/* Central Platform Core Hub */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-              <div className="relative group">
-                {/* Glowing Outer Halo */}
-                <div className="absolute -inset-3 rounded-full bg-gradient-to-r from-indigo-500/30 to-purple-500/30 blur-md animate-pulse pointer-events-none" />
-                
-                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-indigo-950 via-slate-950 to-indigo-900 text-white flex flex-col items-center justify-center border-4 border-indigo-400/40 shadow-2xl transition-transform duration-300 group-hover:scale-105">
-                  <div className="w-10 h-10 rounded-2xl bg-indigo-600/80 border border-indigo-400/40 flex items-center justify-center mb-1 shadow-inner">
-                    <Cpu size={22} className="text-indigo-200" />
-                  </div>
-                  <span className="text-xs font-black tracking-tight text-white leading-tight">
-                    Shaavii Core
-                  </span>
-                  <span className="text-[9px] font-bold text-indigo-300 uppercase tracking-widest mt-0.5">
-                    Platform
-                  </span>
+            {/* 1. Stationary Central Platform Core Hub (Centered at Container Center, Z-Index 30) */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 group cursor-pointer">
+              {/* Outer Pulsing Halo */}
+              <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-indigo-500/25 via-purple-500/25 to-cyan-500/25 blur-lg animate-pulse pointer-events-none" />
+              
+              <div className="w-36 h-36 rounded-full bg-gradient-to-br from-indigo-950 via-slate-950 to-indigo-900 text-white flex flex-col items-center justify-center border-4 border-indigo-400/40 shadow-2xl transition-transform duration-300 group-hover:scale-105">
+                <div className="w-12 h-12 rounded-2xl bg-indigo-600/80 border border-indigo-400/40 flex items-center justify-center mb-1.5 shadow-inner">
+                  <Cpu size={24} className="text-indigo-200" />
                 </div>
+                <span className="text-xs font-black tracking-tight text-white leading-tight">
+                  Our Modern
+                </span>
+                <span className="text-xs font-black tracking-tight text-indigo-300 leading-tight mt-0.5">
+                  Tech Stack
+                </span>
               </div>
             </div>
 
-            {/* 5 Outer Circular Connection Nodes */}
-            {techStack.map((t) => {
-              const Icon = t.icon;
-              return (
+            {/* 2. Orbiting Stage: Zero-size center anchor at (top:50%, left:50%) rotating 360° continuously */}
+            <div className="absolute top-1/2 left-1/2 w-0 h-0 z-20 pointer-events-none animate-orbit-cw origin-center">
+              
+              {/* SVG Connecting Curved Flow Arcs & Directional Arrowheads centered on (0, 0) */}
+              <svg
+                className="absolute -top-[370px] -left-[370px] w-[740px] h-[740px] pointer-events-none overflow-visible"
+                viewBox="-370 -370 740 740"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <defs>
+                  {/* Arrowheads for each colored flow path */}
+                  {arcConnections.map((arc, idx) => (
+                    <marker
+                      key={idx}
+                      id={`flowArrow-${idx}`}
+                      viewBox="0 0 10 10"
+                      refX="7"
+                      refY="5"
+                      markerWidth="6"
+                      markerHeight="6"
+                      orient="auto"
+                    >
+                      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill={arc.color} />
+                    </marker>
+                  ))}
+                  
+                  <linearGradient id="orbitGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#6366f1" stopOpacity="0.4" />
+                    <stop offset="50%" stopColor="#a855f7" stopOpacity="0.3" />
+                    <stop offset="100%" stopColor="#10b981" stopOpacity="0.4" />
+                  </linearGradient>
+                </defs>
+
+                {/* Concentric Circular Orbit Tracks */}
+                <circle cx="0" cy="0" r={circleRadius} stroke="url(#orbitGlow)" strokeWidth="1.5" strokeDasharray="6 6" opacity="0.45" />
+                <circle cx="0" cy="0" r="140" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="4 4" opacity="0.45" />
+
+                {/* Spokes from Center (0, 0) to each Node */}
+                {techStack.map((t, idx) => (
+                  <line
+                    key={idx}
+                    x1="0"
+                    y1="0"
+                    x2={t.x}
+                    y2={t.y}
+                    stroke="#94a3b8"
+                    strokeWidth="1.5"
+                    strokeDasharray="4 4"
+                    opacity="0.35"
+                  />
+                ))}
+
+                {/* Curved Flow Arrows pointing directly from one div to the next div around the circle */}
+                {arcConnections.map((arc, idx) => (
+                  <g key={idx}>
+                    <path
+                      d={arc.path}
+                      stroke={arc.color}
+                      strokeWidth="2.5"
+                      fill="none"
+                      strokeDasharray="5 5"
+                      markerEnd={`url(#flowArrow-${idx})`}
+                    />
+                    {/* Pulsing signal packet flowing along the circle from div to div */}
+                    <circle r="4" fill={arc.color} className="shadow-md">
+                      <animateMotion
+                        path={arc.path}
+                        dur="2s"
+                        repeatCount="indefinite"
+                      />
+                    </circle>
+                  </g>
+                ))}
+              </svg>
+
+              {/* 3. The 5 Divs Moving Along the Circular Track */}
+              {techStack.map((t) => (
                 <div
                   key={t.name}
-                  className={`absolute ${t.desktopPos} z-20 w-52 p-4 rounded-3xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 text-center flex flex-col items-center ${t.borderColor}`}
+                  className="absolute pointer-events-auto"
+                  style={{
+                    left: `${t.x}px`,
+                    top: `${t.y}px`,
+                  }}
                 >
-                  {/* Circular Node Icon */}
-                  <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${t.gradient} text-white flex items-center justify-center shadow-md mb-2.5 border-2 border-white`}>
-                    <Icon size={22} />
-                  </div>
-                  
-                  <h3 className="text-sm font-bold text-slate-900 mb-2">
-                    {t.name}
-                  </h3>
+                  {/* Counter-orbit keeps each card 100% upright and level while revolving */}
+                  <div className="animate-orbit-counter origin-center">
+                    <div
+                      className={`w-48 sm:w-52 p-4 rounded-3xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 text-center flex flex-col items-center ${t.borderColor} cursor-pointer`}
+                    >
+                      {/* Circular Node Icon */}
+                      <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${t.gradient} text-white flex items-center justify-center shadow-md mb-2 border-2 border-white`}>
+                        <t.icon size={22} />
+                      </div>
+                      
+                      <h3 className="text-sm font-bold text-slate-900 mb-1.5">
+                        {t.name}
+                      </h3>
 
-                  {/* Tool Badges */}
-                  <div className="flex flex-wrap gap-1 justify-center">
-                    {t.toolList.map((tool) => (
-                      <span
-                        key={tool}
-                        className="text-[10px] font-semibold text-slate-700 bg-slate-100 px-2 py-0.5 rounded-full border border-slate-200/60"
-                      >
-                        {tool}
-                      </span>
-                    ))}
+                      {/* Tool Badges */}
+                      <div className="flex flex-wrap gap-1 justify-center">
+                        {t.toolList.map((tool) => (
+                          <span
+                            key={tool}
+                            className="text-[10px] font-semibold text-slate-700 bg-slate-100 px-2 py-0.5 rounded-full border border-slate-200/60"
+                          >
+                            {tool}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              );
-            })}
+              ))}
 
+            </div>
+
+          </div>
+
+          {/* Interactive Flow Badge Indicator */}
+          <div className="hidden lg:flex items-center justify-center gap-2 mt-4 mb-2">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-200/80 text-xs font-semibold text-indigo-700 shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse" />
+              <span>Continuous Circular Architecture • Hover over any card to pause flow</span>
+            </span>
           </div>
 
           {/* Mobile & Tablet Connected View (Clean fallback for < lg screens) */}
@@ -505,7 +507,7 @@ export default function Services() {
                   <Cpu size={18} className="text-white" />
                 </div>
                 <div className="text-left">
-                  <div className="text-xs font-black">Shaavii Core Platform</div>
+                  <div className="text-xs font-black">Our Modern Tech Stack</div>
                   <div className="text-[10px] text-indigo-300">Interconnected Architecture</div>
                 </div>
               </div>

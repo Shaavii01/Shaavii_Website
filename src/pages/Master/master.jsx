@@ -12,16 +12,17 @@ export default function Master() {
     let targetId = '';
     const cleanPath = location.pathname.replace('/', '').toLowerCase();
     
-    if (['home', 'hero', 'services', 'solutions', 'features', 'about', 'contact'].includes(cleanPath)) {
-      if (cleanPath === 'hero') targetId = 'home';
-      else if (['features', 'solutions'].includes(cleanPath)) targetId = 'services';
-      else targetId = cleanPath;
-      
+    const validSections = ['home', 'services', 'about', 'contact'];
+    
+    if (validSections.includes(cleanPath)) {
+      targetId = cleanPath;
       // Immediately hide route name from URL bar so it stays clean at http://localhost:3000/
       window.history.replaceState(null, '', '/');
     } else if (location.hash) {
       const hashId = location.hash.replace('#', '');
-      targetId = ['features', 'solutions'].includes(hashId) ? 'services' : hashId;
+      if (validSections.includes(hashId)) {
+        targetId = hashId;
+      }
       window.history.replaceState(null, '', '/');
     }
 
@@ -55,7 +56,7 @@ export default function Master() {
         <About />
       </section>
 
-      {/* 4. Contact & Demo section */}
+      {/* 4. Contact section */}
       <section id="contact" className="scroll-mt-16">
         <ContactUs />
       </section>
