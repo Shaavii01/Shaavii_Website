@@ -2,7 +2,7 @@ import React from 'react';
 import {
   CheckCircle2, Server, Database, Cloud, Palette, Smartphone,
   Bot, Sparkles, Sliders, RefreshCw,
-  GitFork, TrendingUp, Zap, Users, BarChart3
+  GitFork, TrendingUp, Zap, Users, BarChart3, ArrowRight
 } from 'lucide-react';
 
 const solutionCards = [
@@ -56,27 +56,51 @@ const aiCapabilities = [
 const steps = [
   {
     number: '01',
+    phase: 'Phase 01',
     title: 'Connect',
     description: 'Bring your business processes, teams, and information together on one unified platform.',
     icon: GitFork,
+    color: 'from-blue-600 to-indigo-600',
+    lightBg: 'bg-indigo-50',
+    textColor: 'text-indigo-600',
+    borderColor: 'border-indigo-200',
+    shadowColor: 'shadow-indigo-500/20',
   },
   {
     number: '02',
+    phase: 'Phase 02',
     title: 'Configure',
     description: 'Set up custom workflows and business rules tailored to your unique operational requirements.',
     icon: Sliders,
+    color: 'from-indigo-600 to-violet-600',
+    lightBg: 'bg-violet-50',
+    textColor: 'text-violet-600',
+    borderColor: 'border-violet-200',
+    shadowColor: 'shadow-violet-500/20',
   },
   {
     number: '03',
+    phase: 'Phase 03',
     title: 'Automate',
     description: 'Let intelligent automation handle repetitive tasks, routine handoffs, and approvals.',
     icon: Zap,
+    color: 'from-violet-600 to-purple-600',
+    lightBg: 'bg-purple-50',
+    textColor: 'text-purple-600',
+    borderColor: 'border-purple-200',
+    shadowColor: 'shadow-purple-500/20',
   },
   {
     number: '04',
+    phase: 'Phase 04',
     title: 'Optimize',
     description: 'Monitor real-time performance, uncover efficiency opportunities, and continuously improve.',
     icon: TrendingUp,
+    color: 'from-purple-600 to-emerald-600',
+    lightBg: 'bg-emerald-50',
+    textColor: 'text-emerald-600',
+    borderColor: 'border-emerald-200',
+    shadowColor: 'shadow-emerald-500/20',
   },
 ];
 
@@ -208,40 +232,87 @@ export default function Services() {
         </div>
       </section>
 
-      {/* 5. 4-STEP IMPLEMENTATION METHODOLOGY (MOVED FROM SOLUTIONS) */}
-      <section className="py-16 sm:py-20 bg-white border-b border-gray-100">
+      {/* 5. 4-STEP IMPLEMENTATION METHODOLOGY */}
+      <section className="relative overflow-hidden py-20 sm:py-28 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="max-w-2xl mx-auto text-center mb-14">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 text-xs font-bold uppercase tracking-wider mb-3 shadow-sm">
-              Implementation Methodology
+          {/* Section Header */}
+          <div className="max-w-3xl mx-auto text-center mb-16 sm:mb-20">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200/80 text-xs font-bold uppercase tracking-wider mb-4 shadow-sm">
+              <Sparkles size={14} className="text-indigo-600" />
+              <span>Implementation Methodology</span>
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 tracking-tight leading-tight">
-              From Complexity to Simplicity in Four Steps.
+            <h2 className="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight leading-tight mb-4">
+              From Complexity to Simplicity in{' '}
+              <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent">
+                Four Connected Steps.
+              </span>
             </h2>
+            <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+              A continuous, frictionless operational pipeline engineered to transition your business from manual chaos to autonomous clarity.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {steps.map((st) => {
-              const Icon = st.icon;
-              return (
-                <div
-                  key={st.number}
-                  className="relative p-6 rounded-2xl border border-slate-200/80 bg-slate-50/60 hover:bg-white hover:shadow-lg transition-all text-left"
-                >
-                  <span className="text-3xl font-black text-indigo-300 block mb-3">
-                    {st.number}
-                  </span>
-                  <div className="flex items-center gap-2 mb-2">
-                    <Icon size={18} className="text-indigo-600" />
-                    <h3 className="text-lg font-bold text-slate-900">{st.title}</h3>
+          {/* Connected Flow Pipeline Container */}
+          <div className="relative max-w-6xl mx-auto">
+            
+            {/* Horizontal Connecting Flow Line behind the step nodes (Desktop) */}
+            <div className="hidden lg:block absolute top-[52px] left-[10%] right-[10%] h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-emerald-500 rounded-full z-0 opacity-30" />
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+              {steps.map((st, idx) => {
+                const Icon = st.icon;
+                return (
+                  <div
+                    key={st.number}
+                    className="group relative p-7 rounded-3xl border border-slate-200/90 bg-white hover:border-indigo-300 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 text-left flex flex-col justify-between"
+                  >
+                    {/* Directional Flow Arrow to next step (Desktop) */}
+                    {idx < steps.length - 1 && (
+                      <div className="hidden lg:flex absolute -right-3.5 top-10 z-20 w-7 h-7 rounded-full bg-white border-2 border-indigo-500 text-indigo-600 items-center justify-center shadow-md group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                        <ArrowRight size={13} className="stroke-[2.5]" />
+                      </div>
+                    )}
+
+                    <div>
+                      {/* Step Number Node + Icon Header */}
+                      <div className="flex items-center justify-between mb-6">
+                        <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${st.color} text-white font-black text-base flex items-center justify-center shadow-lg ${st.shadowColor} group-hover:scale-105 transition-transform duration-300`}>
+                          {st.number}
+                        </div>
+                        <div className={`w-10 h-10 rounded-xl ${st.lightBg} ${st.textColor} flex items-center justify-center`}>
+                          <Icon size={20} />
+                        </div>
+                      </div>
+
+                      {/* Phase Tag & Step Title */}
+                      <div className="mb-2">
+                        <span className={`text-[11px] font-bold ${st.textColor} uppercase tracking-wider block mb-1`}>
+                          {st.phase}
+                        </span>
+                        <h3 className="text-xl font-bold text-slate-950 group-hover:text-indigo-600 transition-colors">
+                          {st.title}
+                        </h3>
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        {st.description}
+                      </p>
+                    </div>
+
+                    {/* Step Flow Footer Indicator */}
+                    <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+                      <span className="font-semibold text-slate-500">Step {idx + 1} of 4</span>
+                      <span className="inline-flex items-center gap-1 font-bold text-indigo-600 group-hover:translate-x-1 transition-transform">
+                        Flow <ArrowRight size={12} />
+                      </span>
+                    </div>
                   </div>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    {st.description}
-                  </p>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
+
           </div>
 
         </div>
