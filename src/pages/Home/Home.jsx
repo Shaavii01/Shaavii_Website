@@ -195,14 +195,14 @@ export default function Home() {
             <div className="absolute -right-16 -top-16 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute -left-16 -bottom-16 w-80 h-80 bg-rose-500/15 rounded-full blur-3xl pointer-events-none" />
 
-            <div className="relative z-10 max-w-3xl mx-auto space-y-3">
+            <div className="relative z-10 max-w-5xl mx-auto space-y-3">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-indigo-200 text-xs font-bold uppercase tracking-widest border border-white/10 backdrop-blur-sm">
                 The Antidote
               </div>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-snug">
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight leading-snug lg:whitespace-nowrap">
                 Your team deserves meaningful work, not repetitive busywork.
               </h3>
-              <p className="text-sm sm:text-base text-indigo-200/90 leading-relaxed max-w-2xl mx-auto">
+              <p className="text-xs sm:text-sm lg:text-base text-indigo-200/90 leading-relaxed max-w-4xl mx-auto lg:whitespace-nowrap">
                 Shaavii replaces these 6 operational bottlenecks with unified cloud workflows, intelligent AI automation, and real-time clarity.
               </p>
             </div>
