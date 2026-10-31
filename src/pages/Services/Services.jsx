@@ -2,7 +2,7 @@ import React from 'react';
 import {
   CheckCircle2, Server, Database, Cloud, Palette, Smartphone,
   Bot, Sparkles, Sliders, RefreshCw,
-  GitFork, TrendingUp, Zap, Users, BarChart3, ArrowRight
+  GitFork, TrendingUp, Zap, Users, BarChart3, ArrowRight, Cpu
 } from 'lucide-react';
 
 const solutionCards = [
@@ -105,11 +105,66 @@ const steps = [
 ];
 
 const techStack = [
-  { name: 'Frontend', tools: 'React, Next.js, Tailwind CSS, TypeScript', icon: Palette },
-  { name: 'Backend', tools: 'Node.js, Express, Python, Java', icon: Server },
-  { name: 'Mobile', tools: 'React Native, Flutter, Kotlin, Swift', icon: Smartphone },
-  { name: 'Database', tools: 'PostgreSQL, MongoDB, Firebase, Redis', icon: Database },
-  { name: 'Cloud & DevOps', tools: 'AWS, GCP, Docker, CI/CD', icon: Cloud },
+  {
+    name: 'Frontend',
+    tools: 'React, Next.js, Tailwind CSS, TypeScript',
+    toolList: ['React', 'Next.js', 'Tailwind', 'TypeScript'],
+    icon: Palette,
+    gradient: 'from-blue-500 to-cyan-500',
+    color: 'text-blue-600',
+    borderColor: 'hover:border-blue-300',
+    glowColor: 'shadow-blue-500/15',
+    desktopPos: 'top-2 left-1/2 -translate-x-1/2',
+    line: { x: 440, y: 110, color: '#06b6d4' },
+  },
+  {
+    name: 'Backend',
+    tools: 'Node.js, Express, Python, Java',
+    toolList: ['Node.js', 'Express', 'Python', 'Java'],
+    icon: Server,
+    gradient: 'from-indigo-600 to-purple-600',
+    color: 'text-indigo-600',
+    borderColor: 'hover:border-indigo-300',
+    glowColor: 'shadow-indigo-500/15',
+    desktopPos: 'top-28 right-4',
+    line: { x: 700, y: 220, color: '#818cf8' },
+  },
+  {
+    name: 'Mobile',
+    tools: 'React Native, Flutter, Kotlin, Swift',
+    toolList: ['React Native', 'Flutter', 'Kotlin', 'Swift'],
+    icon: Smartphone,
+    gradient: 'from-emerald-500 to-teal-600',
+    color: 'text-emerald-600',
+    borderColor: 'hover:border-emerald-300',
+    glowColor: 'shadow-emerald-500/15',
+    desktopPos: 'bottom-6 right-20',
+    line: { x: 620, y: 490, color: '#10b981' },
+  },
+  {
+    name: 'Database',
+    tools: 'PostgreSQL, MongoDB, Firebase, Redis',
+    toolList: ['PostgreSQL', 'MongoDB', 'Redis', 'Firebase'],
+    icon: Database,
+    gradient: 'from-amber-500 to-orange-500',
+    color: 'text-amber-600',
+    borderColor: 'hover:border-amber-300',
+    glowColor: 'shadow-amber-500/15',
+    desktopPos: 'bottom-6 left-20',
+    line: { x: 260, y: 490, color: '#f59e0b' },
+  },
+  {
+    name: 'Cloud & DevOps',
+    tools: 'AWS, GCP, Docker, CI/CD',
+    toolList: ['AWS', 'GCP', 'Docker', 'CI/CD'],
+    icon: Cloud,
+    gradient: 'from-sky-500 to-indigo-500',
+    color: 'text-sky-600',
+    borderColor: 'hover:border-sky-300',
+    glowColor: 'shadow-sky-500/15',
+    desktopPos: 'top-28 left-4',
+    line: { x: 180, y: 220, color: '#38bdf8' },
+  },
 ];
 
 export default function Services() {
@@ -318,26 +373,171 @@ export default function Services() {
         </div>
       </section>
 
-      {/* 6. TECH STACK */}
-      <section className="py-16 bg-slate-50 border-t border-gray-200 text-center">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 text-center">
-            <span className="inline-flex items-center gap-2 px-3 py-1 mb-3 text-xs font-semibold tracking-wider text-indigo-600 uppercase border border-indigo-100 rounded-full bg-indigo-50">
-              Technology Architecture
+      {/* 6. TECHNOLOGY ARCHITECTURE - CIRCULAR CONNECTION UI */}
+      <section className="relative overflow-hidden py-20 sm:py-28 bg-gradient-to-b from-slate-50/70 via-white to-slate-50/70 border-t border-gray-200 text-center">
+        {/* Subtle Ambient Radial Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Header */}
+          <div className="mb-14 sm:mb-20 text-center max-w-2xl mx-auto">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 mb-3.5 text-xs font-bold tracking-wider text-indigo-700 uppercase border border-indigo-200/80 rounded-full bg-indigo-50 shadow-sm">
+              <Cpu size={14} className="text-indigo-600" />
+              <span>Technology Architecture</span>
             </span>
-            <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950">Our Modern Tech Stack</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-950 mb-4">
+              Our Modern Tech Stack
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600 max-w-xl mx-auto leading-relaxed">
+              An interconnected, high-performance architecture powering continuous business automation and scale.
+            </p>
           </div>
-          <div className="grid max-w-5xl grid-cols-1 gap-4 mx-auto sm:grid-cols-2 lg:grid-cols-5">
-            {techStack.map((t) => (
-              <div key={t.name} className="p-5 text-center transition-shadow bg-white border border-gray-200 rounded-2xl hover:shadow-md">
-                <div className="flex items-center justify-center w-10 h-10 mx-auto mb-3 border border-indigo-100 rounded-lg bg-indigo-50">
-                  <t.icon size={20} className="text-indigo-600" />
+
+          {/* Desktop Circular Connection Constellation (Visible on lg screens) */}
+          <div className="hidden lg:block relative max-w-4xl mx-auto h-[620px] select-none">
+            
+            {/* SVG Connecting Spokes & Circular Orbit Rings */}
+            <svg
+              className="absolute inset-0 w-full h-full pointer-events-none z-0"
+              viewBox="0 0 880 620"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <linearGradient id="orbitGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#6366f1" stopOpacity="0.4" />
+                  <stop offset="50%" stopColor="#a855f7" stopOpacity="0.3" />
+                  <stop offset="100%" stopColor="#10b981" stopOpacity="0.4" />
+                </linearGradient>
+              </defs>
+
+              {/* Concentric Circular Orbits */}
+              <circle cx="440" cy="310" r="240" stroke="url(#orbitGlow)" strokeWidth="1.5" strokeDasharray="6 6" />
+              <circle cx="440" cy="310" r="140" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="4 4" opacity="0.7" />
+
+              {/* Connecting Spokes between Center Hub (440, 310) and the 5 Nodes */}
+              {techStack.map((t, idx) => (
+                <g key={idx}>
+                  <line
+                    x1="440"
+                    y1="310"
+                    x2={t.line.x}
+                    y2={t.line.y}
+                    stroke={t.line.color}
+                    strokeWidth="2"
+                    strokeDasharray="4 4"
+                    opacity="0.6"
+                  />
+                  {/* Traveling Pulse Signal Dot */}
+                  <circle r="4" fill={t.line.color}>
+                    <animateMotion
+                      path={`M 440 310 L ${t.line.x} ${t.line.y}`}
+                      dur={`${2.4 + idx * 0.3}s`}
+                      repeatCount="indefinite"
+                    />
+                  </circle>
+                </g>
+              ))}
+            </svg>
+
+            {/* Central Platform Core Hub */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+              <div className="relative group">
+                {/* Glowing Outer Halo */}
+                <div className="absolute -inset-3 rounded-full bg-gradient-to-r from-indigo-500/30 to-purple-500/30 blur-md animate-pulse pointer-events-none" />
+                
+                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-indigo-950 via-slate-950 to-indigo-900 text-white flex flex-col items-center justify-center border-4 border-indigo-400/40 shadow-2xl transition-transform duration-300 group-hover:scale-105">
+                  <div className="w-10 h-10 rounded-2xl bg-indigo-600/80 border border-indigo-400/40 flex items-center justify-center mb-1 shadow-inner">
+                    <Cpu size={22} className="text-indigo-200" />
+                  </div>
+                  <span className="text-xs font-black tracking-tight text-white leading-tight">
+                    Shaavii Core
+                  </span>
+                  <span className="text-[9px] font-bold text-indigo-300 uppercase tracking-widest mt-0.5">
+                    Platform
+                  </span>
                 </div>
-                <h3 className="mb-1 text-sm font-bold text-slate-900">{t.name}</h3>
-                <p className="text-xs text-slate-500">{t.tools}</p>
               </div>
-            ))}
+            </div>
+
+            {/* 5 Outer Circular Connection Nodes */}
+            {techStack.map((t) => {
+              const Icon = t.icon;
+              return (
+                <div
+                  key={t.name}
+                  className={`absolute ${t.desktopPos} z-20 w-52 p-4 rounded-3xl bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 text-center flex flex-col items-center ${t.borderColor}`}
+                >
+                  {/* Circular Node Icon */}
+                  <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${t.gradient} text-white flex items-center justify-center shadow-md mb-2.5 border-2 border-white`}>
+                    <Icon size={22} />
+                  </div>
+                  
+                  <h3 className="text-sm font-bold text-slate-900 mb-2">
+                    {t.name}
+                  </h3>
+
+                  {/* Tool Badges */}
+                  <div className="flex flex-wrap gap-1 justify-center">
+                    {t.toolList.map((tool) => (
+                      <span
+                        key={tool}
+                        className="text-[10px] font-semibold text-slate-700 bg-slate-100 px-2 py-0.5 rounded-full border border-slate-200/60"
+                      >
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+
           </div>
+
+          {/* Mobile & Tablet Connected View (Clean fallback for < lg screens) */}
+          <div className="lg:hidden max-w-xl mx-auto space-y-4">
+            
+            {/* Center Node on Mobile */}
+            <div className="flex items-center justify-center mb-6">
+              <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-gradient-to-r from-indigo-950 to-slate-900 text-white shadow-xl border border-indigo-500/40">
+                <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center">
+                  <Cpu size={18} className="text-white" />
+                </div>
+                <div className="text-left">
+                  <div className="text-xs font-black">Shaavii Core Platform</div>
+                  <div className="text-[10px] text-indigo-300">Interconnected Architecture</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Circular Nodes List on Mobile */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              {techStack.map((t) => {
+                const Icon = t.icon;
+                return (
+                  <div
+                    key={t.name}
+                    className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex items-center gap-3.5 text-left"
+                  >
+                    <div className={`w-11 h-11 rounded-full bg-gradient-to-br ${t.gradient} text-white flex items-center justify-center flex-shrink-0 shadow-md`}>
+                      <Icon size={20} />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-bold text-slate-900 mb-1">
+                        {t.name}
+                      </h3>
+                      <p className="text-xs text-slate-500 leading-snug">
+                        {t.tools}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+          </div>
+
         </div>
       </section>
 
