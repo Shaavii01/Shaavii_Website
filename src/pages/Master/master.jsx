@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Home from '../Home/Home';
-import Solutions from '../Solutions/Solutions';
-import Features from '../Features/Features';
-import Industries from '../Industries/Industries';
+import Services from '../Services/Services';
 import About from '../About/About';
 import ContactUs from '../ContactUs/ContactUs';
 
@@ -14,12 +12,16 @@ export default function Master() {
     let targetId = '';
     const cleanPath = location.pathname.replace('/', '').toLowerCase();
     
-    if (['home', 'hero', 'solutions', 'features', 'industries', 'about', 'contact'].includes(cleanPath)) {
-      targetId = cleanPath === 'hero' ? 'home' : cleanPath;
+    if (['home', 'hero', 'services', 'solutions', 'features', 'about', 'contact'].includes(cleanPath)) {
+      if (cleanPath === 'hero') targetId = 'home';
+      else if (['features', 'solutions'].includes(cleanPath)) targetId = 'services';
+      else targetId = cleanPath;
+      
       // Immediately hide route name from URL bar so it stays clean at http://localhost:3000/
       window.history.replaceState(null, '', '/');
     } else if (location.hash) {
-      targetId = location.hash.replace('#', '');
+      const hashId = location.hash.replace('#', '');
+      targetId = ['features', 'solutions'].includes(hashId) ? 'services' : hashId;
       window.history.replaceState(null, '', '/');
     }
 
@@ -43,27 +45,17 @@ export default function Master() {
         <Home />
       </section>
 
-      {/* 2. Solutions section */}
-      <section id="solutions" className="scroll-mt-16">
-        <Solutions />
+      {/* 2. Services & Solutions section */}
+      <section id="services" className="scroll-mt-16">
+        <Services />
       </section>
 
-      {/* 3. Features section */}
-      <section id="features" className="scroll-mt-16">
-        <Features />
-      </section>
-
-      {/* 4. Industries section */}
-      <section id="industries" className="scroll-mt-16">
-        <Industries />
-      </section>
-
-      {/* 5. About section */}
+      {/* 3. About section */}
       <section id="about" className="scroll-mt-16">
         <About />
       </section>
 
-      {/* 6. Contact & Demo section */}
+      {/* 4. Contact & Demo section */}
       <section id="contact" className="scroll-mt-16">
         <ContactUs />
       </section>

@@ -3,9 +3,7 @@ import companyLogo from '../Assets/Logo.png';
 
 const exploreLinks = [
   { id: 'home', label: 'Home' },
-  { id: 'features', label: 'Features' },
-  { id: 'solutions', label: 'Solutions' },
-  { id: 'industries', label: 'Industries' },
+  { id: 'services', label: 'Services' },
   { id: 'about', label: 'About Us' },
   { id: 'contact', label: 'Contact' },
 ];
@@ -38,14 +36,14 @@ const Footer = () => {
               className="inline-flex items-center gap-3 cursor-pointer"
             >
               <div className="w-10 h-10 rounded-xl bg-white p-1.5 flex items-center justify-center border border-gray-700 shadow-md">
-                <img src={companyLogo} alt="Shaavii Logo" className="w-full h-full object-contain" />
+                <img src={companyLogo} alt="Shaavii – Powering Your Digital Future" className="w-full h-full object-contain" />
               </div>
               <span className="text-2xl font-black text-white tracking-tight">
                 SHAAVII
               </span>
             </a>
             <p className="text-sm font-semibold text-indigo-400">
-              Smarter Business. Intelligent Automation.
+              Powering Your Digital Future
             </p>
             <p className="text-sm text-gray-400 max-w-md leading-relaxed">
               Helping businesses simplify operations, automate workflows, and unlock new possibilities through technology.

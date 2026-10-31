@@ -1,0 +1,10 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.shaavii.com
+
+# Sitemaps
+Sitemap: https://www.shaavii.com/sitemap.xml
+

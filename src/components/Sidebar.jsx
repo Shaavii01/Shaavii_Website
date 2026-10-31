@@ -37,7 +37,7 @@ const Sidebar = ({ isOpen, onClose, collapsed, onToggleCollapse }) => {
           <div className="p-4 border-b border-indigo-100 flex items-center justify-between overflow-hidden">
             <div className="flex items-center gap-3 min-w-0">
               <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden bg-white border border-indigo-100">
-                <img src={companyLogo} alt="Shaavii Logo" className="w-full h-full object-contain" />
+                <img src={companyLogo} alt="Shaavii – Powering Your Digital Future" className="w-full h-full object-contain" />
               </div>
               {!collapsed && (
                 <span className="text-xl font-bold text-indigo-600 tracking-tight truncate min-w-0">

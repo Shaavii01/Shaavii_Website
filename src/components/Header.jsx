@@ -4,9 +4,7 @@ import shaaviiLogo from '../Assets/Shaavii-Logo.png';
 
 const navItems = [
   { id: 'home', label: 'Home' },
-  { id: 'solutions', label: 'Solutions' },
-  { id: 'features', label: 'Features' },
-  { id: 'industries', label: 'Industries' },
+  { id: 'services', label: 'Services' },
   { id: 'about', label: 'About Us' },
   { id: 'contact', label: 'Contact' },
 ];
@@ -17,7 +15,7 @@ const Header = () => {
 
   // Highlight active section on scroll using IntersectionObserver
   useEffect(() => {
-    const sectionIds = ['home', 'solutions', 'features', 'industries', 'about', 'contact'];
+    const sectionIds = ['home', 'services', 'about', 'contact'];
     const observers = [];
 
     sectionIds.forEach((id) => {
@@ -65,7 +63,7 @@ const Header = () => {
         >
           <img
             src={shaaviiLogo}
-            alt="Shaavii"
+            alt="Shaavii – Powering Your Digital Future"
             className="h-8 sm:h-9 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
           />
         </a>

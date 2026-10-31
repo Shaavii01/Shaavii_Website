@@ -37,8 +37,7 @@ export default {
         '16': '3.2rem',
       },
       fontFamily: {
-        sans: ['"Source Serif 4"', 'Georgia', 'serif'],
-        serif: ['"Source Serif 4"', 'Georgia', 'serif'],
+        sans: ['"Inter"', '"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
       },
       fontSize: {
         'xs': ['0.75rem', { lineHeight: '1rem' }],     // 12px
